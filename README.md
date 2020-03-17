@@ -1,0 +1,1 @@
+This app allows users to search a GH handle and see all the public repos associated with their account. Also includes links to each repo URL. 

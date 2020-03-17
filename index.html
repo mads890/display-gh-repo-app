@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GitHub Repo Display</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <h1>Search handle. See repos. It's that easy.</h1>
+    </header>
+    <main>
+        <form class="searchHandle">
+            <label for="handle">Who are you looking for?</label>
+            <input type="text" name="handle" id="handle" placeholder="GitHub handle">
+            <input type="submit" value="Get Repos">
+        </form>
+        <section class="results hidden">
+            <ul class="repolist">
+            </ul>
+        </section>
+        <section class="error hidden">
+            <h2>An error occurred...</h2>
+        </section>
+    </main>
+</body>
+</html>
