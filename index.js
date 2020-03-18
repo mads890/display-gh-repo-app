@@ -16,15 +16,12 @@ function listRepos(responseJson) {
     $('.repolist').empty();
     $('.results').removeClass('hidden'); 
     
-    if (responseJson.status == 200) {
+
         for (let i = 0; i < responseJson.length; i++) {
          $('.repolist').append(`<li><h2>${responseJson[i].name}</h2><p><a href="${responseJson[i].url}">View this repo</a></p></li>`)
         }
-    }
 
-    else if (responseJson.status == 404) {
-        showError(responseJson);
-    }
+
 }
 
 function showError(err) {
