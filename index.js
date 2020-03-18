@@ -6,15 +6,24 @@ function getRepos(handle) {
     fetch(url)
     .then(response => response.json())
     .then(responseJson => listRepos(responseJson))
+    .catch(err => {
+        $('.error').append(`<h2>Something went wrong...</h2>
+        <p>${err.message}</p>`)
+    });
 }
 
 function listRepos(responseJson) {
     $('.repolist').empty();
     $('.results').removeClass('hidden'); 
-    console.log(responseJson);
-
-    for (let i = 0; i < responseJson.length; i++) {
+    
+    if (responseJson.status == 200) {
+        for (let i = 0; i < responseJson.length; i++) {
          $('.repolist').append(`<li><h2>${responseJson[i].name}</h2><p><a href="${responseJson[i].url}">View this repo</a></p></li>`)
+        }
+    }
+
+    else if (responseJson.status == 404) {
+        showError(responseJson);
     }
 }
 
@@ -27,7 +36,7 @@ function showError(err) {
 function formSubmit() {
     $('form').submit(event => {
         event.preventDefault();
-        $('.error').addClass('hidden');
+        $('.error').empty().addClass('hidden');
         let handle = $('#handle').val();
         getRepos(handle);
     });
