@@ -13,7 +13,7 @@ function listRepos(responseJson) {
     $('.results').removeClass('hidden'); 
     console.log(responseJson);
 
-    for (i = 0; i < responseJson.length; i++) {
+    for (let i = 0; i < responseJson.length; i++) {
          $('.repolist').append(`<li><h2>${responseJson[i].name}</h2><p><a href="${responseJson[i].url}">View this repo</a></p></li>`)
     }
 }
