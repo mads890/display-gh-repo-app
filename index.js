@@ -1,31 +1,27 @@
 'use strict';
 
 function getRepos(handle) {
-    let url = 'https://api.github.com/users' + handle + 'repos';
+    let url = 'https://api.github.com/users/' + handle + '/repos';
     
     fetch(url)
     .then(response => response.json())
     .then(responseJson => listRepos(responseJson));
-    .catch(err => showError());
+    .catch(err => showError(err));
 }
 
 function listRepos(responseJson) {
     $('.repolist').empty();
+    $('.results').removeClass('hidden'); 
 
-    if (responseJson.status === 'success') {
-       $('.results').removeClass('hidden'); 
-       //<li><h2>${responseJson.repotitle}</h2><p><a href="${responseJson.repoURL}">View this repo</a></p></li>
-    }
-
-    else if (responseJson.status === 'error') {
-        $('.results').addClass('hidden');
-        showError(responseJson.message);
+    for (i = 0; i < responseJson.length; i++) {
+         $('.repolist').append(`<li><h2>${responseJson[i].name}</h2><p><a href="${responseJson[i].url}">View this repo</a></p></li>`)
     }
 }
 
-function showError(message) {
+function showError(err) {
     console.log('an error occurred...')
-    $('.error').removeClass('hidden').append(`<p>${message}</p>`);
+    $('.error').empty();
+    $('.error').removeClass('hidden').append(`<p>${err.message}</p>`);
 }
 
 function formSubmit() {
