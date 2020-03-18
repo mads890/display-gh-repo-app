@@ -6,7 +6,6 @@ function getRepos(handle) {
     fetch(url)
     .then(response => response.json())
     .then(responseJson => listRepos(responseJson))
-    .catch(err => showError(err))
 }
 
 function listRepos(responseJson) {
