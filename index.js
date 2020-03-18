@@ -5,13 +5,14 @@ function getRepos(handle) {
     
     fetch(url)
     .then(response => response.json())
-    .then(responseJson => listRepos(responseJson));
-    .catch(err => showError(err));
+    .then(responseJson => listRepos(responseJson))
+    .catch(err => showError(err))
 }
 
 function listRepos(responseJson) {
     $('.repolist').empty();
     $('.results').removeClass('hidden'); 
+    console.log(responseJson);
 
     for (i = 0; i < responseJson.length; i++) {
          $('.repolist').append(`<li><h2>${responseJson[i].name}</h2><p><a href="${responseJson[i].url}">View this repo</a></p></li>`)
